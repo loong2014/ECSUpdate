@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+## stop tomcat
+/usr/local/tomcat/bin/shutdown.sh
+
+## clean old war folder
+rm -rf ./WechatService
+
+## pull new war
+git pull
+
+## update libs
+cp ./libs/* /usr/local/tomcat/lib/
+
+## start tomcat
+/usr/local/tomcat/bin/startup.sh
+
+## show log
+tail -f /usr/local/tomcat/logs/*
